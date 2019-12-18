@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
-        Passport::loadKeysFrom('D:/IPSSI/api/api2/storage/');
+        Passport::loadKeysFrom(storage_path("./"));
         //
     }
 }

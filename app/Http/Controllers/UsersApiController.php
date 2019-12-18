@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UsersRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersApiController extends Controller
@@ -77,7 +78,12 @@ class UsersApiController extends Controller
      */
     public function details()
     {
-        return response()->json(['user' => auth()->user()], 200);
+        if (Auth::check()){
+            $user = Auth::user();
+            return response()->json(['user' => $user], 200);
+        }else{
+            return response()->json(['error' => 'UnAuthorised'], 401);
+        }
     }
 
     /**
